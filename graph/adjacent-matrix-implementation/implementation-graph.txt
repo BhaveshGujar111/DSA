@@ -1,0 +1,49 @@
+// You can edit this code!
+// Click here and start typing.
+package main
+
+import "fmt"
+
+type Edge struct{
+    node int
+    wt int
+}
+
+func main() {
+    // Adjacency Matrix
+	var n, m int
+	fmt.Scan(&n, &m)
+	adj := make([][]int, n)
+	for i := range adj {
+		adj[i] = make([]int, n)
+	}
+	for i := 0; i < m; i++ {
+		var u, v, wt int
+		fmt.Scan(&u, &v, &wt)
+		adj[u][v] = wt
+		adj[v][u] = wt
+	}
+	for i := 0; i < n; i++ {
+		for j := 0; j < n; j++ {
+			fmt.Printf("%d -> %d & wt = %d\n", i, j, adj[i][j])
+		}
+	}
+
+    // Adjacency List
+    var n, m int
+ 	fmt.Scan(&n, &m)
+ 	adj := make([][]Edge, n)
+ 	for i := 0; i < m; i++ {
+ 	    var u,v,wt int
+ 	    fmt.Scan(&u, &v, &wt)
+ 	    adj[u] = append(adj[u], Edge{node: v, wt: wt})
+ 	    adj[v] = append(adj[v], Edge{node: u, wt: wt})
+ 	}
+ 	for i := 0; i < n; i++ {
+ 	    for _, edge := range adj[i] {
+ 	        fmt.Printf("%d -> %d && wt = %d\n", i, edge.node, edge.wt)
+ 	    }
+ 	}
+ 	
+}
+
